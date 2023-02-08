@@ -1,1 +1,2 @@
-{:deps {}}
+{:paths ["src" "resources"]
+ :deps  {ring/ring      {:mvn/version "1.9.6"}}}
