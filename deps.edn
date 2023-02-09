@@ -1,3 +1,7 @@
 {:paths ["src" "resources"]
- :deps  {ring/ring      {:mvn/version "1.9.6"}
-         metosin/reitit {:mvn/version "0.5.13"}}}
+ :deps  {ring/ring                  {:mvn/version "1.9.6"}
+         org.clojure/clojure        {:mvn/version "1.11.1"}
+         com.walmartlabs/lacinia    {:mvn/version "1.2-alpha-4"}
+         metosin/ring-http-response {:mvn/version "0.9.2"}
+         ;com.walmartlabs/lacinia-pedestal {:mvn/version "1.1"}
+         metosin/reitit             {:mvn/version "0.5.13"}}}

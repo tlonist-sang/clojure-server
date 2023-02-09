@@ -2,7 +2,9 @@
   (:require [reitit.ring :as ring]
             [reitit.coercion.spec]
             [reitit.swagger :as swagger]
+            [ring.middleware.resource :as resource]
             [reitit.swagger-ui :as swagger-ui]
+            [graphql :as g]
             [reitit.ring.coercion :as coercion]
             [reitit.dev.pretty :as pretty]
             [reitit.ring.middleware.muuntaja :as muuntaja]
@@ -27,12 +29,14 @@
           :handler (swagger/create-swagger-handler)}}])
 
 (def app
-  (ring/ring-handler
-    (ring/router
-      [(swagger)
-       (default)])
-    (ring/routes
-      (swagger-ui/create-swagger-ui-handler {:path "/swagger-ui"})
-      (ring/create-default-handler))))
+  (-> (ring/ring-handler
+        (ring/router
+          [(swagger)
+           (default)
+           (g/route g/handler)])
+        (ring/routes
+          (swagger-ui/create-swagger-ui-handler {:path "/swagger-ui"})
+          (ring/create-default-handler)))
+      (resource/wrap-resource "static")))
 
 (comment)

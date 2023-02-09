@@ -1,0 +1,3 @@
+{:queries {:greet {:description "greeting from graphql"
+                   :type        String
+                   :resolve     :greet}}}
