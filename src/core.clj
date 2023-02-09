@@ -1,17 +1,13 @@
 (ns core
-  (:require [ring.adapter.jetty :as jetty]))
+  (:require [ring.adapter.jetty :as jetty]
+            [handler :as handler]))
 
 (def ^:dynamic *server*)
-
-(defn handler [request]
-  {:status  200
-   :headers {"Content-Type" "text/html"}
-   :body    "Hello World"})
 
 (defn start-server []
   (alter-var-root
     #'*server*
-    (constantly (jetty/run-jetty handler
+    (constantly (jetty/run-jetty #'handler/app
                                   {:port                 3000
                                    :join?                false
                                    :send-server-version? false}))))
