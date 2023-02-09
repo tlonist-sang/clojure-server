@@ -10,15 +10,16 @@
 
 (defn start-server []
   (alter-var-root
-    *server*
-    (jetty/run-jetty handler
-                      {:port                 3000
-                       :join?                false
-                       :send-server-version? false})))
-
+    #'*server*
+    (constantly (jetty/run-jetty handler
+                                  {:port                 3000
+                                   :join?                false
+                                   :send-server-version? false}))))
 (defn stop-server []
   (.stop *server*))
 
 (comment
-  (start-server))
+  (start-server)
+  (stop-server)
+  ,)
 
