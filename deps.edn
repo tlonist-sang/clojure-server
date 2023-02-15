@@ -1,7 +1,11 @@
 {:paths ["src" "resources"]
- :deps  {ring/ring                  {:mvn/version "1.9.6"}
-         org.clojure/clojure        {:mvn/version "1.11.1"}
-         com.walmartlabs/lacinia    {:mvn/version "1.2-alpha-4"}
-         metosin/ring-http-response {:mvn/version "0.9.2"}
-         ;com.walmartlabs/lacinia-pedestal {:mvn/version "1.1"}
-         metosin/reitit             {:mvn/version "0.5.13"}}}
+ :deps  {ring/ring                           {:mvn/version "1.9.6"}
+         org.clojure/clojure                 {:mvn/version "1.11.1"}
+         com.walmartlabs/lacinia             {:mvn/version "1.2-alpha-4"}
+         metosin/ring-http-response          {:mvn/version "0.9.2"}
+         metosin/reitit                      {:mvn/version "0.5.13"}
+         com.github.seancorfield/next.jdbc   {:mvn/version "1.2.737"}
+         com.github.seancorfield/honeysql    {:mvn/version "2.4.969"}
+         integrant/integrant                 {:mvn/version "0.8.0"}
+         camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
+         mysql/mysql-connector-java          {:mvn/version "8.0.23"}}}
