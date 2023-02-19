@@ -12,24 +12,33 @@
 
 (defn generate-posts [user-ids count]
   (for [id user-ids
-        n  count]
+        n  (range count)]
     {:user-id id
      :content (random-str 30)}))
 
-(defn generate-post-comments [])
+(defn generate-comments
+  "generate count amount of post comments with random user-ids on random post-ids"
+  [user-ids post-ids count]
+  (for [n (range count)]
+    {:user-id (rand-nth user-ids)
+     :post-id (rand-nth post-ids)
+     :content (random-str 20)}))
+
 
 (comment
-  (->> (repeatedly 10 #(nth "abcdefghijklmnopqrstuvwxyz" (rand-int 26)))
-       (apply str))
+  (require '[db :as db]
+           '[camel-snake-kebab.core :as csk])
 
-  (random-str 123)
-  (generate-users 10)
+  (def users (generate-users 50))
+  (def posts (db/get-all-posts))
+  (def users (db/get-all-users))
+  (db/insert-users users)
 
+  (generate-posts (->> (db/get-all-users)
+                       (map :id)) (range 5))
 
-  (for [id [1 2 3]
-        n  [10 20 30]]
-    [id "hello"])
+  (db/insert-posts (->> (generate-posts (->> (db/get-all-users)
+                                             (map :id)) (range 5))))
 
-  (let [users    (generate-users 100)
-        posts    (generate-posts user-ids 10)
-        comments (generate-post-comments)]))
+  (db/insert-post-comments (generate-comments (map :id users) (map :id posts) 100))
+  :rcf)
