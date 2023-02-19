@@ -8,4 +8,5 @@
          com.github.seancorfield/honeysql    {:mvn/version "2.4.969"}
          integrant/integrant                 {:mvn/version "0.8.0"}
          camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
+         integrant/repl                      {:mvn/version "0.3.2"}
          mysql/mysql-connector-java          {:mvn/version "8.0.23"}}}
