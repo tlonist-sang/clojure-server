@@ -2,3 +2,5 @@
 *.iml
 .nrepl-port
 .cpcache
+.lsp
+.clj-kondo
